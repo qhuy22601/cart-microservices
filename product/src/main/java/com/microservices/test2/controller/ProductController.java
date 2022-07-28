@@ -31,8 +31,8 @@ public class ProductController {
     public List<Product> get(@RequestParam Long id){
         return productService.findAllById(id);
     }
-    @GetMapping("/find/{name}")
-    public List<Product> find(@PathVariable("name") String name){
+    @GetMapping("/find/")
+    public Product find(@RequestParam String name){
         return productService.getProductByName(name);
     }
 

@@ -1,0 +1,14 @@
+com/microservices/test2/model/User.class
+com/microservices/test2/CartApplication.class
+com/microservices/test2/model/Product.class
+com/microservices/test2/controller/CartController.class
+com/microservices/test2/repository/CartDetailRepository.class
+com/microservices/test2/service/ProductDetailProxy.class
+com/microservices/test2/service/CartService.class
+com/microservices/test2/webclientConfig/WebClientConfig.class
+com/microservices/test2/model/ItemDTO.class
+com/microservices/test2/model/CartDetail.class
+com/microservices/test2/repository/CartRepository.class
+com/microservices/test2/model/Cart.class
+com/microservices/test2/model/IdObjectDTO.class
+com/microservices/test2/model/DouIdObjectDTO.class

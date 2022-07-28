@@ -1,0 +1,5 @@
+com/microservices/test2/ProductApplication.class
+com/microservices/test2/service/ProductService.class
+com/microservices/test2/repository/ProductRepository.class
+com/microservices/test2/model/Product.class
+com/microservices/test2/controller/ProductController.class

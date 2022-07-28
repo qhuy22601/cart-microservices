@@ -1,0 +1,5 @@
+com/microservices/test2/model/User.class
+com/microservices/test2/controller/UserController.class
+com/microservices/test2/repository/UserRepository.class
+com/microservices/test2/service/UserService.class
+com/microservices/test2/UserApplication.class
