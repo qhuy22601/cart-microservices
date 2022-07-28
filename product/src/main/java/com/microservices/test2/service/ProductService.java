@@ -28,12 +28,14 @@ public class ProductService {
 //        return productRepo.findProductsById(id);
 //    }
 
-    public List<Product> getProductByName(String name){
-        return productRepo.findAllByName(name);
+    public Product getProductByName(String name){
+        return productRepo.findByName(name);
     }
     public List<Product> findAllById(Long id){
         return productRepo.getAllById(id);
     }
+
+
 
     public Product reduceQuantity(Long id, Integer quantity) {
         Optional<Product> productOpt = productRepo.findById(id);
@@ -49,4 +51,5 @@ public class ProductService {
             return productRepo.save(product);
         }
     }
+
 }
