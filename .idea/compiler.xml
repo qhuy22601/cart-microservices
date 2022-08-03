@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="product" />
+        <module name="orderConsumer" />
         <module name="user" />
         <module name="Api-Gateway" />
         <module name="cart" />
@@ -19,8 +20,10 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Api-Gateway" options="-parameters" />
+      <module name="Test2" options="" />
       <module name="cart" options="-parameters" />
       <module name="order" options="-parameters" />
+      <module name="orderConsumer" options="-parameters" />
       <module name="product" options="-parameters" />
       <module name="sever-registry" options="-parameters" />
       <module name="user" options="-parameters" />

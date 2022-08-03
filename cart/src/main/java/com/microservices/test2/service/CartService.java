@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,23 +29,22 @@ public class CartService {
 //    @Autowired
 //    private  ProductDetailProxy detailProxy;
 
-    public void addItemToCartService(Cart cart){
+    public void addItemToCartService(Cart cart) {
         cartRepo.save(cart);
     }
-
 
 
     // user webclient to fetch product by id -> product.setquantity = amount
     // cartDetailList.add( prod) display cartdetail
 
 
-    public CartDetail getItemFromCartDetail(String name, Long userId, Long cardId){
+    public CartDetail getItemFromCartDetail(String name, Long userId, Long cardId) {
         CartDetail cartDetail = new CartDetail();
 //        Optional<Product> productOpt = productRepo.findById(product.getId());
 //        Product prod = productOpt.get();
 //        String name = product.getName();
         Product fetchProd = webConfig.build().get()
-                .uri("http://localhost:8082/api/product/find/", uriBuilder -> uriBuilder.queryParam("name",name).build())
+                .uri("http://localhost:8082/api/product/find/", uriBuilder -> uriBuilder.queryParam("name", name).build())
                 .retrieve()
                 .bodyToMono(Product.class)
                 .block();
@@ -59,17 +59,17 @@ public class CartService {
         return cartDetail;
     }
 
-    public CartDetail createCartDetail(CartDetail cartDetail){
+    public CartDetail createCartDetail(CartDetail cartDetail) {
         return cartDetailRepo.save(cartDetail);
     }
 
-    public CartDetail addItem(String name, Long userId, Long cartId, Integer amount){
+    public CartDetail addItem(String name, Long userId, Long cartId, Integer amount) {
         CartDetail cartDetail = new CartDetail();
 //        Optional<Product> productOpt = productRepo.findById(product.getId());
 //        Product prod = productOpt.get();
 //        String name = product.getName();
         Product fetchProd = webConfig.build().get()
-                .uri("http://localhost:8082/api/product/find/", uriBuilder -> uriBuilder.queryParam("name",name).build())
+                .uri("http://localhost:8082/api/product/find/", uriBuilder -> uriBuilder.queryParam("name", name).build())
                 .retrieve()
                 .bodyToMono(Product.class)
                 .block();
@@ -86,7 +86,17 @@ public class CartService {
     }
 
 
+    public Optional<CartDetail> findDetailById(Long id) {
+        return cartDetailRepo.findById(id);
+    }
 
+    public List<CartDetail> seeCart() {
+        return cartDetailRepo.findAll();
+    }
+
+    public Optional<Cart> getCart(Long id) {
+        return cartRepo.findById(id);
+    }
 
     // create cart detail, create product with amount prop, add product into cart detail
     //test create addAmountDTO userid, productid, amount
@@ -110,14 +120,15 @@ public class CartService {
 //        return cartDetail;
 //    }
 
-    public void deleteItemFromCartService(Cart cart){
+    public void deleteItemFromCartService(Cart cart) {
         cartRepo.delete(cart);
     }
 
-    public CartDetail deteleCartDetail(){
+    public CartDetail deteleCartDetail() {
         CartDetail cartDetail = new CartDetail();
         return cartDetail;
     }
+
 
 //    public CartDetail displayAllItemFromCartService(Long userid){
 //        CartDetail cartDetail = new CartDetail();
@@ -135,10 +146,8 @@ public class CartService {
 //    }
 
 
-
-
-    public CartDetail displayAllItemFromCartService(Long userId, Long cartDetailId){
-        CartDetail  cartDetail = new CartDetail();
+    public CartDetail displayAllItemFromCartService(Long userId, Long cartDetailId) {
+        CartDetail cartDetail = new CartDetail();
         cartDetail.setUserId(userId);
         cartDetail.setCartDetailId(cartDetailId);
 
@@ -164,9 +173,6 @@ public class CartService {
 //        cartDetail.setProducts(productList);
         return cartDetail;
     }
-
-
-
 
 
 }

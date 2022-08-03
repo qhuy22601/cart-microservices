@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/cart")
 @Slf4j
@@ -40,10 +43,16 @@ public class CartController {
 //        return new ResponseEntity<>(cartService.addItem(product, uId, cId), HttpStatus.OK);
 //    }
 
-    @PostMapping("/additem/{name}/{uId}/{cId}/{amount}")
-    public ResponseEntity<CartDetail> addItem(@PathVariable("name") String name, @PathVariable("uId") Long userId, @PathVariable("cId") Long cartId, @PathVariable("amount") Integer amount) {
+    @PostMapping("/additem/")
+    public ResponseEntity<CartDetail> addItem(@RequestParam("name") String name, @RequestParam("uId") Long userId, @RequestParam("cId") Long cartId, @RequestParam("amount") Integer amount) {
         return new ResponseEntity<>(cartService.addItem(name, userId, cartId, amount), HttpStatus.OK);
     }
+    @GetMapping("/getitem/")
+    public ResponseEntity<CartDetail> getItemFromCart(@RequestParam("name") String name, @RequestParam("uId") Long userId, @RequestParam("cId") Long cartId, @RequestParam("amount") Integer amount) {
+        return new ResponseEntity<>(cartService.addItem(name, userId, cartId, amount), HttpStatus.OK);
+    }
+
+
     @GetMapping("/getfrom/{name}/{userId}/{cartId}")
     public ResponseEntity<CartDetail> getFrom(@PathVariable("name") String name, @PathVariable("userId") Long userId, @PathVariable("cartId") Long cartId){
         return new ResponseEntity<>(cartService.getItemFromCartDetail(name, userId,cartId),HttpStatus.OK);
@@ -59,7 +68,20 @@ public class CartController {
             return new ResponseEntity<>(cartService.createCartDetail(cartDetail),HttpStatus.OK);
         }
 
+    @GetMapping("/seecart")
+    public ResponseEntity<List<CartDetail>> seeCart(){
+        return new ResponseEntity<>(cartService.seeCart(), HttpStatus.OK);
+    }
 
+    @GetMapping("/findbyId/{id}")
+    public ResponseEntity<Optional<Cart>> findCart(@PathVariable("id") Long id){
+        return new ResponseEntity<>(cartService.getCart(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/cartdetail")
+    public ResponseEntity<Optional<CartDetail>> findDetailById(@RequestParam("id") Long id){
+        return new ResponseEntity<>(cartService.findDetailById(id),HttpStatus.OK);
+    }
 
 //    @PutMapping("/order/{id}")
 //    public ResponseEntity<Product> order(@PathVariable("id") Long id, @RequestParam Integer quantity){

@@ -28,6 +28,21 @@ public class ProductService {
 //        return productRepo.findProductsById(id);
 //    }
 
+    public Product addQuantity(Long id, Integer quantity){
+        Optional<Product> productOptional = productRepo.findById(id);
+        if(productOptional.isEmpty()){
+            log.info("ko cos san pham" + id);
+            return null;
+        }
+        else{
+            Product product = productOptional.get();
+            product.getName();
+            product.getDescription();
+            product.setQuantity(quantity);
+            return productRepo.save(product);
+        }
+    }
+
     public Product getProductByName(String name){
         return productRepo.findByName(name);
     }

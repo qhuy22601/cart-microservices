@@ -21,6 +21,7 @@
         <module>product</module>
         <module>Api-Gateway</module>
         <module>sever-registry</module>
+        <module>orderConsumer</module>
     </modules>
 
     <properties>
@@ -45,6 +46,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
 
         </dependencies>
     </dependencyManagement>
